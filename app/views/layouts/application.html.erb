@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myrecipes</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="main">
+        <%= render "layouts/navigation" %>
+        <div class="container-fluid margin">
+            <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <footer id="footer">
+      <%= render "layouts/footer" %>
+    </footer>
+  </body>
+</html>
