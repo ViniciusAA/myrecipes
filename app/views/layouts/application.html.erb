@@ -10,16 +10,12 @@
   </head>
 
   <body>
-    <div id="container">
-      <div id="main">
-        <%= render "layouts/navigation" %>
-        <div class="container-fluid margin">
-            <%= yield %>
-        </div>
-      </div>
+    <%= render "layouts/navigation" %>
+    <div class = "container-fluid margin">
+      <%= yield %>
     </div>
 
-    <footer id="footer">
+    <footer class = "footer well">
       <%= render "layouts/footer" %>
     </footer>
   </body>
