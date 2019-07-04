@@ -15,12 +15,13 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
+    select_recipe
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
+    select_recipe
     if @recipe.update(recipe_params)
+      flash[:success] = "Recipe was updated successfully!"
       redirect_to recipe_path(@recipe)
     else
       render "edit"
@@ -28,12 +29,13 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    select_recipe
   end
 
-  def delete
-    @recipe = Recipe.find(params[:id])
+  def destroy
+    select_recipe
     @recipe.destroy
+    flash[:success] = "Recipe deleted successfully!"
     redirect_to recipes_path
   end
 
@@ -45,5 +47,9 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:name, :description)
+  end
+
+  def select_recipe
+    @recipe = Recipe.find(params[:id])
   end
 end
