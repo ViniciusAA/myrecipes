@@ -11,12 +11,10 @@
 
   <body>
     <%= render "layouts/navigation" %>
+    <%= render "layouts/messages" %>
     <div class = "container-fluid margin">
       <%= yield %>
     </div>
-
-    <footer class = "footer well col-md-2">
       <%= render "layouts/footer" %>
-    </footer>
   </body>
 </html>
