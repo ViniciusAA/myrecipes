@@ -1,13 +1,15 @@
 class RecipesController < ApplicationController
+  before_action :set_recipe, only: [:edit, :show, :update, :destroy]
+
   def new
     @recipe = Recipe.new
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.chef = Chef.first
+    @recipe.chef = Chef.last
     if @recipe.save
-      flash[:success] = "Recipe was created successfully!"
+      flash_message("created")
       redirect_to recipe_path(@recipe)
     else
       render "new"
@@ -15,13 +17,11 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    select_recipe
   end
 
   def update
-    select_recipe
     if @recipe.update(recipe_params)
-      flash[:success] = "Recipe was updated successfully!"
+      flash_message("updated")
       redirect_to recipe_path(@recipe)
     else
       render "edit"
@@ -29,13 +29,11 @@ class RecipesController < ApplicationController
   end
 
   def show
-    select_recipe
   end
 
   def destroy
-    select_recipe
     @recipe.destroy
-    flash[:success] = "Recipe deleted successfully!"
+    flash_message("deleted")
     redirect_to recipes_path
   end
 
@@ -49,7 +47,11 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(:name, :description)
   end
 
-  def select_recipe
+  def set_recipe
     @recipe = Recipe.find(params[:id])
+  end
+
+  def flash_message(action)
+    flash[:success] = "Recipe " + action + " successfully!"
   end
 end
