@@ -7,10 +7,10 @@ module ApplicationHelper
   end
 
   def chef_has_recipes?(chef)
-    if chef.recipes.last
-      link_to "Latest Recipe: " + chef.recipes.last.name, recipe_path(chef.recipes.last)
-    else
-      "No recipes yet"
-    end
+    chef.recipes.any? ? chef.recipes.length.to_s + " recipes" : "No recipes yet"
+  end
+
+  def get_last_recipe_link(chef)
+    link_to "Latest Recipe: " + chef.recipes.last.name, recipe_path(chef.recipes.last) if chef.recipes.any?
   end
 end

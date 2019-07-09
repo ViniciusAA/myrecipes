@@ -1,21 +1,21 @@
 <%= render "shared/page_title", title: "Showing all Recipes" %>
 
 <% @recipes.reverse.each do |recipe| %>
-  <div class = "row">
-    <div class = "col-md-2">
-      <section class = "chef_info center">
-        <%= link_to gravatar_for(recipe.chef, size: 140) %>
-      </section>
-    </div>
-    <div class = "col-md-8 well">
-      <p><font size="5"><%= link_to recipe.name, recipe_path(recipe) %></font></p>
-      <p><font size="4"><%= truncate(recipe.description, length: 150) %></font></p>
-      <p><font size="2">Created <%= time_ago_in_words(recipe.created_at) %> ago</font></p>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-1 chef_icon">
+        <%= link_to gravatar_for(recipe.chef, size: 100) %>
+      </div>
+      <div class="well col-md-11 chef_info">
+        <p><b><%= link_to recipe.name, recipe_path(recipe) %></b></p>
+        <p>Contact: <%= recipe.description %></p>
+        <p><font size="2">Created <%= time_ago_in_words(recipe.created_at) %> ago</font></p>
+      </div>
     </div>
   </div>
 <% end %>
 
-<hr/>
+<hr />
 
 <p>
   <b><font size="4"><%= link_to "Back", root_path %></font></b>
