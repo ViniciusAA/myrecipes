@@ -1,0 +1,22 @@
+<%= render "shared/page_title", title: "Showing all Chefs"%>
+
+<div class="col-md-12">
+<% @chefs.each do |chef| %>
+  <div class="well">
+    <div class="col-md-10">
+      <p>
+        Chef: <%= chef.chefname %>
+      </p>
+      <p>
+        Contact: <%= chef.email %>
+      </p>
+    </div>
+    <div class="col-md-2">
+      <p>
+        Latest Recipe: <%= chef.recipes.last.name %>
+      </p>
+    </div>
+  </div>
+  <br/>
+<% end %>
+</div>

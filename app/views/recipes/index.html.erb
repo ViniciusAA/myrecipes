@@ -1,6 +1,6 @@
 <%= render "shared/page_title", title: "Showing all Recipes" %>
 
-<% @recipes.each do |recipe| %>
+<% @recipes.reverse.each do |recipe| %>
   <div class = "row">
     <div class = "col-md-2">
       <section class = "chef_info center">

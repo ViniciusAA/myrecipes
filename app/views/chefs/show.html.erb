@@ -1,1 +1,19 @@
-<%= render "shared/page_title", title: "Your Profile" %>
+<%= render "shared/page_title", title: "Chef #{@chef.chefname}'s Profile" %>
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4 center">
+    <%= link_to gravatar_for(@chef, size: 150) %>
+  </div>
+</div>
+
+<br/>
+
+<h4 align="center"><%= @chef.chefname %>'s recipes</h4>
+
+<% @chef.recipes.reverse.each do |recipe| %>
+  <div class = "col-md-12 well">
+    <p><font size="5"><%= link_to recipe.name, recipe_path(recipe) %></font></p>
+    <p><font size="4"><%= truncate(recipe.description, length: 150) %></font></p>
+    <p><font size="2">Created <%= time_ago_in_words(recipe.created_at) %> ago</font></p>
+  </div>
+<% end %>
