@@ -2,18 +2,15 @@
 
 <div class="col-md-12">
 <% @chefs.each do |chef| %>
-  <div class="well">
+  <div class="well col-md-12">
     <div class="col-md-10">
-      <p>
-        Chef: <%= chef.chefname %>
-      </p>
-      <p>
-        Contact: <%= chef.email %>
-      </p>
+      <%= link_to "Chef: " + chef.chefname, chef_path(chef) %>
+      <br/>
+      Contact: <%= chef.email %>
     </div>
     <div class="col-md-2">
       <p>
-        Latest Recipe: <%= chef.recipes.last.name %>
+        <%= chef_has_recipes?(chef) %>
       </p>
     </div>
   </div>
