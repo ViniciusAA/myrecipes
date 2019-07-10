@@ -37,6 +37,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'jquery-rails'
 
+gem 'will_paginate', '3.1.7'
+gem 'bootstrap-will_paginate', '0.0.10'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'

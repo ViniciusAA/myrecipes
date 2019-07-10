@@ -10,10 +10,20 @@
 
 <h4 align="center"><%= @chef.chefname %>'s recipes</h4>
 
-<% @chef.recipes.reverse.each do |recipe| %>
-  <div class = "col-md-12 well">
-    <p><font size="5"><%= link_to recipe.name, recipe_path(recipe) %></font></p>
-    <p><font size="4"><%= truncate(recipe.description, length: 150) %></font></p>
-    <p><font size="2">Created <%= time_ago_in_words(recipe.created_at) %> ago</font></p>
+<div align="center">
+  <%= will_paginate @chef_recipes%>
+</div>
+
+<% @chef_recipes.each do |recipe| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="well col-md-12">
+        <div class="col-md-9 chef_info">
+          <p><b><%= link_to recipe.name, recipe_path(recipe) %></b></p>
+          <p>Contact: <%= recipe.description %></p>
+          <p><font size="2">Created <%= time_ago_in_words(recipe.created_at) %> ago</font></p>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>

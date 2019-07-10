@@ -1,12 +1,17 @@
 <%= render "shared/page_title", title: "Showing all Chefs"%>
 
-<% @chefs.reverse.each do |chef| %>
+<div align="center">
+  <%= will_paginate %>
+</div>
+
+<% @chefs.each do |chef| %>
   <div class="row">
     <div class="col-md-12">
       <div class="col-md-1 chef_icon">
         <%= link_to gravatar_for(chef, size: 100) %>
       </div>
       <div class="well col-md-11">
+
         <div class="col-md-9 chef_info">
           <p><b><%= link_to "Chef: " + chef.chefname, chef_path(chef) %></b></p>
           <p>Contact: <%= chef.email %></p>
@@ -16,13 +21,12 @@
           <p><b><%= chef_has_recipes?(chef) %></b></p>
           <p><b><%= get_last_recipe_link(chef) %></b></p>
         </div>
+
       </div>
     </div>
   </div>
 <% end %>
 
-<hr />
-
-<p>
-  <b><font size="4"><%= link_to "Back", root_path %></font></b>
-</p>
+<div align="center">
+  <%= will_paginate %>
+</div>
