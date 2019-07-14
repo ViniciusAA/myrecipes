@@ -7,20 +7,23 @@
 <% @chefs.each do |chef| %>
   <div class="row">
     <div class="col-md-12">
-      <div class="col-md-1 chef_icon">
+      <div class="col-md-1 chef-icon">
         <%= link_to gravatar_for(chef, size: 100) %>
       </div>
       <div class="well col-md-11">
 
-        <div class="col-md-9 chef_info">
+        <div class="col-md-9 chef-info">
           <p><b><%= link_to "Chef: " + chef.chefname, chef_path(chef) %></b></p>
           <p>Contact: <%= chef.email %></p>
           <p><font size="2">Joined <%= time_ago_in_words(chef.created_at) %> ago</font></p>
         </div>
-        <div class="col-md-2 chef_info">
-          <p><b><%= chef_has_recipes?(chef) %></b></p>
-          <p><b><%= get_last_recipe_link(chef) %></b></p>
-        </div>
+
+        <% if chef.recipes.any? %>
+          <div class="col-md-2 chef-info">
+            <p><b><%= chef.recipes.length %> recipes</b></p>
+            <p><b><%= link_to "Latest Recipe: " + chef.recipes.first.name, recipe_path(chef.recipes.first) %></b></p>
+          </div>
+        <% end %>
 
       </div>
     </div>

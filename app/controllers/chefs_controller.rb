@@ -1,4 +1,5 @@
 class ChefsController < ApplicationController
+  before_action :set_chef, only: [:edit, :show, :update, :destroy]
   def new
     @chef = Chef.new
   end
@@ -7,18 +8,16 @@ class ChefsController < ApplicationController
     @chef = Chef.new(chef_params)
     if @chef.save
       flash[:success] = "Welcome #{@chef.chefname} to Myrecipes app!"
+      session[:chef_id] = @chef.id
       redirect_to @chef
     else
       render "new"
     end
   end
 
-  def edit
-    set_chef
-  end
+  def edit; end
 
   def update
-    set_chef
     if @chef.update(chef_params)
       flash[:success] = "Your account was updated successfully!"
       redirect_to @chef
@@ -28,14 +27,12 @@ class ChefsController < ApplicationController
   end
 
   def destroy
-    set_chef
     @chef.destroy
-    flash[:success] = "Your account was deleted successfully!"
-    redirect_to pages_home_path
+    flash[:danger] = "Chef and all associated recipes have been deleted!"
+    redirect_to chefs_path
   end
 
   def show
-    set_chef
     @chef_recipes = @chef.recipes.paginate(page: params[:page], per_page: 5)
   end
 

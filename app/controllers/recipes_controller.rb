@@ -7,7 +7,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    @recipe.chef = Chef.last
+    @recipe.chef = current_chef
     if @recipe.save
       flash_message("created")
       redirect_to recipe_path(@recipe)
@@ -16,8 +16,7 @@ class RecipesController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @recipe.update(recipe_params)
@@ -28,8 +27,7 @@ class RecipesController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     @recipe.destroy
