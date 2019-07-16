@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:edit, :show, :update, :destroy]
+  before_action :require_user, except: [:index, :show]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
 
   def new
     @recipe = Recipe.new
@@ -40,6 +42,13 @@ class RecipesController < ApplicationController
   end
 
   private
+
+  def require_same_user
+    if current_chef != @recipe.chef
+      flash[:danger] = "You can only delete or edit your own recipes"
+      redirect_to recipes_path
+    end
+  end
 
   def recipe_params
     params.require(:recipe).permit(:name, :description)

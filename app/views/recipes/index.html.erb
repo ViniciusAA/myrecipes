@@ -14,6 +14,7 @@
         <div class="col-md-9 chef-info">
           <p><b><%= link_to recipe.name, recipe_path(recipe) %></b></p>
           <p>Description: <%= recipe.description %></p>
+          <p><font size="2">Chef: <%= recipe.chef.chefname %></p>
           <p><font size="2">Created <%= time_ago_in_words(recipe.created_at) %> ago</font></p>
         </div>
         <% if logged_in? && current_chef == recipe.chef %>
