@@ -6,7 +6,7 @@
   </div>
 </div>
 
-<% if logged_in? && current_chef == @chef %>
+<% if logged_in? && (current_chef == @chef || current_chef.admin?) %>
   <br />
 
   <div class="col-md-12 row">
