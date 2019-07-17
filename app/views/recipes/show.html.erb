@@ -24,7 +24,7 @@
 <hr/>
 
 <div class="recipe-actions col-md-offset-2">
-  <% if logged_in? && current_chef == @recipe.chef %>
+  <% if logged_in? && (current_chef == @recipe.chef || current_chef.admin?) %>
     <div class="col-md-12">
       <%= link_to "Edit this recipe", edit_recipe_path(@recipe), class: "btn btn-xs btn-warning" %>
       <%= link_to "Delete this recipe", recipe_path(@recipe), method: :delete,

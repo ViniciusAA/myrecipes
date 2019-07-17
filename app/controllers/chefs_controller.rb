@@ -45,7 +45,7 @@ class ChefsController < ApplicationController
   private
 
   def require_same_user
-    if current_chef != @chef
+    if current_chef != @chef && !current_chef.admin?
       flash[:danger] = "You can only delete or edit your own profile"
       redirect_to chefs_path
     end
