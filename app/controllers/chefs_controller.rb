@@ -29,6 +29,7 @@ class ChefsController < ApplicationController
   end
 
   def destroy
+    session[:chef_id] = nil if @chef == current_chef
     @chef.destroy
     flash[:danger] = "Chef and all associated recipes have been deleted!"
     redirect_to chefs_path
