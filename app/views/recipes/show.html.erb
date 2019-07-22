@@ -2,6 +2,12 @@
 
 <div class = "col-md-12">
   <div class = "well col-md-8 col-md-offset-2">
+    <% if @recipe.ingredients.any? %>
+      <p class = "center"><font size="5"><strong>Ingredients: </strong></font></p>
+      <hr />
+      <%= render @recipe.ingredients %>
+      <hr/>
+    <% end %>
     <p class = "center"><font size="5"><strong>Steps: </strong></font></p>
     <hr/>
     <%= simple_format(@recipe.description) %>

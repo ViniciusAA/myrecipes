@@ -1,0 +1,38 @@
+<%= render "shared/page_title", title: @ingredient.name %>
+<h3 align="center">Recipe's containing <%= @ingredient.name %></h3>
+
+<br />
+
+<% if logged_in? && current_chef.admin? %>
+  <div class="chef-options">
+    <%= link_to "Edit this Igredient", edit_ingredient_path(@ingredient), class: "btn btn-xs btn-warning" %>
+  </div>
+<% end %>
+
+<br />
+
+<div align="center">
+  <%= will_paginate @ingredient_recipes %>
+</div>
+
+<% if @ingredient_recipes.any? %>
+  <% @ingredient_recipes.each do |recipe| %>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-1 chef-icon">
+          <%= link_to gravatar_for(recipe.chef, size: 100) %>
+        </div>
+        <div class="well col-md-11">
+          <%= render "shared/recipe_description", recipe: recipe %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <h3 align="center"><b>No recipes to display</b></h3>
+<% end %>
+
+
+<div align="center">
+  <%= will_paginate @ingredient_recipes %>
+</div>
